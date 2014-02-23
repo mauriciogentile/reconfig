@@ -1,0 +1,4 @@
+recotool
+========
+
+Remote configuration tool
