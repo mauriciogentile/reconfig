@@ -1,4 +1,4 @@
-recotool
+reconfig
 ========
 
 Remote configuration tool
