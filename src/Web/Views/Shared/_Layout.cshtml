@@ -1,0 +1,53 @@
+﻿@using Reconfig.Web.Models
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <base href="~/" />
+    <title>SecConfig</title>
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width" />
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <header>
+    </header>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div ng-controller="menu" class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="~/">SecConfig</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#/application">Applications</a></li>
+                <li><a href="#/globalsetting">Global Settings</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>@User.Identity.Name<b class="caret"></b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="body" class="container">
+        <div ng-controller="menu" class="page-header">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="~/"><i class="fa fa-dashboard"></i>Home</a></li>
+                    <li><a href="#/configuration/byApp/{{selectedApp.Id}}"><strong><i class="fa fa-edit"></i>{{selectedApp.Name}}</strong></a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="bs-docs-section">
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/libs")
+    @Scripts.Render("~/bundles/custom")
+    </div>
+</body>
+</html>

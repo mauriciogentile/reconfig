@@ -1,0 +1,103 @@
+﻿header, nav, section, article, aside, footer, hgroup
+{
+	display: block;
+}
+
+textarea.editor
+{
+	font-family: 'Courier New';
+	font-size: small;
+	/*background-color: #333;*/
+	color: #000;
+	width: 90%;
+	height: 320px;
+}
+
+.page-header
+{
+	margin-top: 80px !important;
+}
+
+.btn
+{
+	margin-left: 10px;
+}
+
+pre.prettyprint
+{
+	margin-left: 0px !important;
+	margin-top: 0px !important;
+	min-height: 300px;
+}
+
+.navbar-brand
+{
+	color: #428bca !important;
+	font-size: xx-large !important;
+}
+
+a.selected
+{
+	color: white;
+}
+
+table td
+{
+	vertical-align: middle !important;
+}
+
+.tab-pane
+{
+	margin: 20px;
+}
+
+.navbar-left
+{
+	float: left;
+	display: block !important;
+	width: 20% !important;
+}
+
+.navbar-header
+{
+	float: left;
+}
+
+.navbar-user
+{
+	float: right;
+	margin-right: 20px !important;
+}
+
+#body
+{
+	padding: 0px !important;
+}
+
+#page-wrapper
+{
+	float: right;
+	width: 80% !important;
+	background-color: white;
+	padding-left: 50px !important;
+	padding-right: 50px !important;
+	padding-bottom: 50px !important;
+}
+
+body
+{
+	margin-top: 0 !important;
+	/*background-color: rgb(34,34,34) !important;*/
+}
+
+
+.panel-body
+{
+	min-height: 150px;
+	//max-height: 450px;
+	overflow-y: auto;
+}
+
+.modal-content {
+	margin-top: 25%;
+}

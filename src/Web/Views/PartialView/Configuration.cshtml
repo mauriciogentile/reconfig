@@ -1,0 +1,32 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Configurations</div>
+    <div class="panel-body">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-4">
+                    <label>Url</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Environment</label>
+                </div>
+            </div>
+            <div class="row" ng-cloak ng-repeat="conf in configurations">
+                <div class="col-md-3"><a href="#/configuration/edit/{{conf.Id}}/app/{{appId}}">{{conf.Name}}</a></div>
+                <div class="col-md-4">{{conf.Url}}</div>
+                <div class="col-md-2">{{conf.Environment}}</div>
+                <div class="col-md-1">
+                    <a href="api/config/resolve?url={{conf.Url}}" target="_blank" class="btn btn-info btn-sm" style="margin-bottom: 2px;">Preview</a>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="clone(conf.Id)" class="btn btn-success btn-sm" style="margin-bottom: 2px;">Clone</button>
+                </div>
+                <div class="col-md-1">
+                    <button ng-click="delete(conf.Id)" class="btn btn-danger btn-sm" style="margin-bottom: 2px;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

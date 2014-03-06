@@ -1,0 +1,4121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://iadb.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://iadb.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://iadb.org/">
+      <s:element name="ListRealms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="langCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListRealmsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListRealmsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListRealmsByGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="langCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListRealmsByGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListRealmsByGroupResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="domain" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateADResult" type="tns:PersonAuth" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersonAuth">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListGroupsInRealms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupTypeCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListGroupsInRealmsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListGroupsInRealmsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListGroupsInGroupRecursive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="groupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recursionDepth" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListGroupsInGroupRecursiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListGroupsInGroupRecursiveResult" type="tns:ArrayOfGUMGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGUMGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GUMGroup" nillable="true" type="tns:GUMGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GUMGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="GUMGroupID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RealmID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RealmName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADGroupName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnBehalfOf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupLevel" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPersonInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonInfoResult" type="tns:PersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersonDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PersonAuth" type="tns:PersonAuth" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FormOfAddressID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreferredLanguage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnBehalfOf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupLevel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupParent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonGroupMembershipID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBankEmployeeInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankEmployeeInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankEmployeeInfoResult" type="tns:BankEmployeeDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BankEmployeeDetails">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PGMID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Office" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCodeOfAssignment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PositionTitleID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitleEN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitleES" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitlePT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitleFR" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrgUnitCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartmentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RollupOrgUnitCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBankEmployeeList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBankEmployeeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankEmployeeListResult" type="tns:ArrayOfBankEmployeeDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBankEmployeeDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BankEmployeeDetails" nillable="true" type="tns:BankEmployeeDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IsUserInGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserInGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsUserInGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserInGroupRealm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserInGroupRealmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsUserInGroupRealmResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRealms" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupInfoResult" type="tns:GUMGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateExternal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oneTimeToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateExternalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateExternalResult" type="tns:PersonAuth" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListDelegates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRealms" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListDelegatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListDelegatesResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPersonDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonDetails" nillable="true" type="tns:PersonDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListDelegators">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListDelegatorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListDelegatorsResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonContacts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonContactsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListPersonContactsResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListApplications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeGlobal" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="langCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListApplicationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListApplicationsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonRealms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonRealmsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListPersonRealmsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonGroupsIncludingGlobal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="showGroupData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonGroupsIncludingGlobalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListPersonGroupsIncludingGlobalResult" type="tns:ArrayOfGUMGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeGlobalGroups" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="showGroupData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListPersonGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListPersonGroupsResult" type="tns:ArrayOfGUMGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="alias" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="genderCD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="streetAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cityID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="postalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="formOfAddressID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="preferredLanguage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nationalityCD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdByPersonID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePersonResult" type="tns:PersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="genderCD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="streetAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cityID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="postalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="formOfAddressID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="preferredLanguage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="updatedByPersonID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePersonResult" type="tns:PersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePersonAlias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="alias" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="setAsPreferredAlias" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdByPersonID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePersonAliasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePersonAliasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePersonGroupMembership">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="gumGroupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionFromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionToDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionCountryCD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionRanking1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionRanking2" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionTitleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionTitleText" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionOffice" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionPointOfContact" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdByPersonID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePersonGroupMembershipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePersonGroupMembershipResult" type="tns:PersonGroupMembership" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersonGroupMembership">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PersonGroupMembershipID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FK_GumGroupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FK_MemberPersonID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ToDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FK_CountryCodeOfAssignment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ranking1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ranking2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FK_PositionTitleID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Office" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VIP" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TempVIP" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InstitutionalContact" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitleEN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitleES" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitlePT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionTitleFR" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdatePersonGroupMembership">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personGroupMembershipID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionFromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionToDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionCountryCD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionRanking1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionRanking2" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionOffice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionVIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionTempVIP" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="positionPointOfContact" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionInstContactType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionSkype" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionTwitter" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="positionComments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="titleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleGender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleShortEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleShortES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleShortPT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleShortFR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleLongEN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleLongES" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleLongPT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="titleLongFR" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="updatedByPersonID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersonGroupMembershipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdatePersonGroupMembershipResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonGroupMembershipInfoByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personGroupMembershipID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonGroupMembershipInfoByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonGroupMembershipInfoByIDResult" type="tns:PersonGroupMembership" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonGroupMembershipInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="gumGroupId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonGroupMembershipInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonGroupMembershipInfoResult" type="tns:PersonGroupMembership" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersonGroupMembershipExpirationDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personGroupMembershipID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="expirationDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersonGroupMembershipExpirationDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePersonGroupMembershipExpirationDateResult" type="tns:PersonGroupMembership" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPersonImageFromFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="filePath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPersonImageFromFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddPersonImageFromFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPersonImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pictureStream" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPersonImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddPersonImageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonImageFullSize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonImageFullSizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonImageFullSizeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonImageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateOneTimePasscode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="OTPExpirationDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateOneTimePasscodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateOneTimePasscodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMembers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRealms" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegates" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="showGroupData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMembersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListMembersResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMemberships">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRealms" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegates" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="showGroupData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListMembershipsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListMembershipsResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListEmailsByGroupNoRecursive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListEmailsByGroupNoRecursiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListEmailsByGroupNoRecursiveResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersonGroupMembershipRanking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personGroupMembershipID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ranking1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ranking2" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersonGroupMembershipRankingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePersonGroupMembershipRankingResult" type="tns:PersonGroupMembership" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cityID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="langCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCityInfoResult" type="tns:CityDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CityDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountrySubdivisionCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountrySubdivisionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountrySubdivisionActive" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CityId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CityActive" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityPopulation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityGMTOffset" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityDSTOffset" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="_GetGroupRecursion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="gumGroupId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="_GetGroupRecursionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_GetGroupRecursionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="_GetGroupRecursionUp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="gumGroupId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="_GetGroupRecursionUpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_GetGroupRecursionUpResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_ListPersonGroupsIncludingGlobal_INSTEADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="USE_ListPersonGroupsIncludingGlobal_INSTEADResult" type="tns:ArrayOfGUMGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_ListPersonGroups_INSTEAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeGlobalGroups" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_ListPersonGroups_INSTEADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="USE_ListPersonGroups_INSTEADResult" type="tns:ArrayOfGUMGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_ListMembers_INSTEAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allRealms" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegates" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_ListMembers_INSTEADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="USE_ListMembers_INSTEADResult" type="tns:ArrayOfPersonDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_IsUserInGroup_INSTEAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_IsUserInGroup_INSTEADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="USE_IsUserInGroup_INSTEADResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_IsUserInGroupRealm_INSTEAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="gumGroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="realmName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeDelegators" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="USE_IsUserInGroupRealm_INSTEADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="USE_IsUserInGroupRealm_INSTEADResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonAuth" nillable="true" type="tns:PersonAuth" />
+      <s:element name="ArrayOfGUMGroup" nillable="true" type="tns:ArrayOfGUMGroup" />
+      <s:element name="PersonDetails" nillable="true" type="tns:PersonDetails" />
+      <s:element name="BankEmployeeDetails" nillable="true" type="tns:BankEmployeeDetails" />
+      <s:element name="ArrayOfBankEmployeeDetails" nillable="true" type="tns:ArrayOfBankEmployeeDetails" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="GUMGroup" nillable="true" type="tns:GUMGroup" />
+      <s:element name="ArrayOfPersonDetails" nillable="true" type="tns:ArrayOfPersonDetails" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="PersonGroupMembership" nillable="true" type="tns:PersonGroupMembership" />
+      <s:element name="int" type="s:int" />
+      <s:element name="CityDetails" nillable="true" type="tns:CityDetails" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListRealmsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListRealms" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListRealmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsByGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:ListRealmsByGroup" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsByGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:ListRealmsByGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateADSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateAD" />
+  </wsdl:message>
+  <wsdl:message name="ValidateADSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateADResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInRealmsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListGroupsInRealms" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInRealmsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListGroupsInRealmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInGroupRecursiveSoapIn">
+    <wsdl:part name="parameters" element="tns:ListGroupsInGroupRecursive" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInGroupRecursiveSoapOut">
+    <wsdl:part name="parameters" element="tns:ListGroupsInGroupRecursiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersonInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankEmployeeInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankEmployeeInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankEmployeeList" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankEmployeeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserInGroup" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserInGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupRealmSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserInGroupRealm" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupRealmSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserInGroupRealmResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateExternalSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateExternal" />
+  </wsdl:message>
+  <wsdl:message name="ValidateExternalSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateExternalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListDelegates" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListDelegatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatorsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListDelegators" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatorsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListDelegatorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonContactsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListPersonContacts" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonContactsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListPersonContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListApplicationsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListApplications" />
+  </wsdl:message>
+  <wsdl:message name="ListApplicationsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListApplicationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonRealmsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListPersonRealms" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonRealmsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListPersonRealmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsIncludingGlobalSoapIn">
+    <wsdl:part name="parameters" element="tns:ListPersonGroupsIncludingGlobal" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsIncludingGlobalSoapOut">
+    <wsdl:part name="parameters" element="tns:ListPersonGroupsIncludingGlobalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListPersonGroups" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListPersonGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePerson" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePerson" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonAliasSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePersonAlias" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonAliasSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePersonAliasResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonGroupMembershipSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonGroupMembershipSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePersonGroupMembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePersonGroupMembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersonGroupMembershipInfoByID" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonGroupMembershipInfoByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersonGroupMembershipInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonGroupMembershipInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipExpirationDateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePersonGroupMembershipExpirationDate" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipExpirationDateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePersonGroupMembershipExpirationDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageFromFileSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPersonImageFromFile" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageFromFileSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPersonImageFromFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPersonImage" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPersonImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageFullSizeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersonImageFullSize" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageFullSizeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonImageFullSizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersonImage" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateOneTimePasscodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateOneTimePasscode" />
+  </wsdl:message>
+  <wsdl:message name="GenerateOneTimePasscodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateOneTimePasscodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListMembersSoapIn">
+    <wsdl:part name="parameters" element="tns:ListMembers" />
+  </wsdl:message>
+  <wsdl:message name="ListMembersSoapOut">
+    <wsdl:part name="parameters" element="tns:ListMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListMembershipsSoapIn">
+    <wsdl:part name="parameters" element="tns:ListMemberships" />
+  </wsdl:message>
+  <wsdl:message name="ListMembershipsSoapOut">
+    <wsdl:part name="parameters" element="tns:ListMembershipsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListEmailsByGroupNoRecursiveSoapIn">
+    <wsdl:part name="parameters" element="tns:ListEmailsByGroupNoRecursive" />
+  </wsdl:message>
+  <wsdl:message name="ListEmailsByGroupNoRecursiveSoapOut">
+    <wsdl:part name="parameters" element="tns:ListEmailsByGroupNoRecursiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipRankingSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePersonGroupMembershipRanking" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipRankingSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePersonGroupMembershipRankingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCityInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetCityInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionSoapIn">
+    <wsdl:part name="parameters" element="tns:_GetGroupRecursion" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionSoapOut">
+    <wsdl:part name="parameters" element="tns:_GetGroupRecursionResponse" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionUpSoapIn">
+    <wsdl:part name="parameters" element="tns:_GetGroupRecursionUp" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionUpSoapOut">
+    <wsdl:part name="parameters" element="tns:_GetGroupRecursionUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroupsIncludingGlobal_INSTEADSoapIn">
+    <wsdl:part name="parameters" element="tns:USE_ListPersonGroupsIncludingGlobal_INSTEAD" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroupsIncludingGlobal_INSTEADSoapOut">
+    <wsdl:part name="parameters" element="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADResponse" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroups_INSTEADSoapIn">
+    <wsdl:part name="parameters" element="tns:USE_ListPersonGroups_INSTEAD" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroups_INSTEADSoapOut">
+    <wsdl:part name="parameters" element="tns:USE_ListPersonGroups_INSTEADResponse" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListMembers_INSTEADSoapIn">
+    <wsdl:part name="parameters" element="tns:USE_ListMembers_INSTEAD" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListMembers_INSTEADSoapOut">
+    <wsdl:part name="parameters" element="tns:USE_ListMembers_INSTEADResponse" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroup_INSTEADSoapIn">
+    <wsdl:part name="parameters" element="tns:USE_IsUserInGroup_INSTEAD" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroup_INSTEADSoapOut">
+    <wsdl:part name="parameters" element="tns:USE_IsUserInGroup_INSTEADResponse" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroupRealm_INSTEADSoapIn">
+    <wsdl:part name="parameters" element="tns:USE_IsUserInGroupRealm_INSTEAD" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroupRealm_INSTEADSoapOut">
+    <wsdl:part name="parameters" element="tns:USE_IsUserInGroupRealm_INSTEADResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsHttpGetIn">
+    <wsdl:part name="langCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsByGroupHttpGetIn">
+    <wsdl:part name="langCode" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsByGroupHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ValidateADHttpGetIn">
+    <wsdl:part name="domain" type="s:string" />
+    <wsdl:part name="userName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateADHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonAuth" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInRealmsHttpGetIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="groupTypeCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInRealmsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInGroupRecursiveHttpGetIn">
+    <wsdl:part name="groupID" type="s:string" />
+    <wsdl:part name="groupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="recursionDepth" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInGroupRecursiveHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonInfoHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeInfoHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:BankEmployeeDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeListHttpGetIn" />
+  <wsdl:message name="GetBankEmployeeListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBankEmployeeDetails" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupRealmHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupRealmHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupInfoHttpGetIn">
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:GUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="ValidateExternalHttpGetIn">
+    <wsdl:part name="oneTimeToken" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateExternalHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonAuth" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatesHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatorsHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonContactsHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonContactsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListApplicationsHttpGetIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeGlobal" type="s:string" />
+    <wsdl:part name="langCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListApplicationsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonRealmsHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonRealmsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsIncludingGlobalHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsIncludingGlobalHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+    <wsdl:part name="includeGlobalGroups" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonHttpGetIn">
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="alias" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="dateOfBirth" type="s:string" />
+    <wsdl:part name="genderCD" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="cityID" type="s:string" />
+    <wsdl:part name="postalCode" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="phoneNumber" type="s:string" />
+    <wsdl:part name="formOfAddressID" type="s:string" />
+    <wsdl:part name="preferredLanguage" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="nationalityCD" type="s:string" />
+    <wsdl:part name="createdByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="dateOfBirth" type="s:string" />
+    <wsdl:part name="genderCD" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="cityID" type="s:string" />
+    <wsdl:part name="postalCode" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="phoneNumber" type="s:string" />
+    <wsdl:part name="formOfAddressID" type="s:string" />
+    <wsdl:part name="preferredLanguage" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="updatedByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonAliasHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="alias" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="setAsPreferredAlias" type="s:string" />
+    <wsdl:part name="createdByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonAliasHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonGroupMembershipHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupID" type="s:string" />
+    <wsdl:part name="positionFromDate" type="s:string" />
+    <wsdl:part name="positionToDate" type="s:string" />
+    <wsdl:part name="positionEmail" type="s:string" />
+    <wsdl:part name="positionPhone" type="s:string" />
+    <wsdl:part name="positionCountryCD" type="s:string" />
+    <wsdl:part name="positionRanking1" type="s:string" />
+    <wsdl:part name="positionRanking2" type="s:string" />
+    <wsdl:part name="positionTitleID" type="s:string" />
+    <wsdl:part name="positionTitleText" type="s:string" />
+    <wsdl:part name="positionOffice" type="s:string" />
+    <wsdl:part name="positionPointOfContact" type="s:string" />
+    <wsdl:part name="createdByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonGroupMembershipHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipHttpGetIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+    <wsdl:part name="positionFromDate" type="s:string" />
+    <wsdl:part name="positionToDate" type="s:string" />
+    <wsdl:part name="positionEmail" type="s:string" />
+    <wsdl:part name="positionPhone" type="s:string" />
+    <wsdl:part name="positionCountryCD" type="s:string" />
+    <wsdl:part name="positionRanking1" type="s:string" />
+    <wsdl:part name="positionRanking2" type="s:string" />
+    <wsdl:part name="positionOffice" type="s:string" />
+    <wsdl:part name="positionVIP" type="s:string" />
+    <wsdl:part name="positionTempVIP" type="s:string" />
+    <wsdl:part name="positionPointOfContact" type="s:string" />
+    <wsdl:part name="positionInstContactType" type="s:string" />
+    <wsdl:part name="positionSkype" type="s:string" />
+    <wsdl:part name="positionTwitter" type="s:string" />
+    <wsdl:part name="positionComments" type="s:string" />
+    <wsdl:part name="titleID" type="s:string" />
+    <wsdl:part name="titleGender" type="s:string" />
+    <wsdl:part name="titleType" type="s:string" />
+    <wsdl:part name="titleShortEN" type="s:string" />
+    <wsdl:part name="titleShortES" type="s:string" />
+    <wsdl:part name="titleShortPT" type="s:string" />
+    <wsdl:part name="titleShortFR" type="s:string" />
+    <wsdl:part name="titleLongEN" type="s:string" />
+    <wsdl:part name="titleLongES" type="s:string" />
+    <wsdl:part name="titleLongPT" type="s:string" />
+    <wsdl:part name="titleLongFR" type="s:string" />
+    <wsdl:part name="updatedByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoByIDHttpGetIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoByIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupId" type="s:string" />
+    <wsdl:part name="fromDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipExpirationDateHttpGetIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+    <wsdl:part name="expirationDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipExpirationDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageFromFileHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="filePath" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageFromFileHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="pictureStream" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageFullSizeHttpGetIn">
+    <wsdl:part name="fileName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageFullSizeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageHttpGetIn">
+    <wsdl:part name="fileName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateOneTimePasscodeHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="OTPExpirationDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateOneTimePasscodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMembersHttpGetIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegates" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMembersHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListMembershipsHttpGetIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegates" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMembershipsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListEmailsByGroupNoRecursiveHttpGetIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListEmailsByGroupNoRecursiveHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipRankingHttpGetIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+    <wsdl:part name="ranking1" type="s:string" />
+    <wsdl:part name="ranking2" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipRankingHttpGetOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="GetCityInfoHttpGetIn">
+    <wsdl:part name="cityID" type="s:string" />
+    <wsdl:part name="langCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCityInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:CityDetails" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionHttpGetIn">
+    <wsdl:part name="gumGroupId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionUpHttpGetIn">
+    <wsdl:part name="gumGroupId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionUpHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroupsIncludingGlobal_INSTEADHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroupsIncludingGlobal_INSTEADHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroups_INSTEADHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+    <wsdl:part name="includeGlobalGroups" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroups_INSTEADHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListMembers_INSTEADHttpGetIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegates" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListMembers_INSTEADHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroup_INSTEADHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroup_INSTEADHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroupRealm_INSTEADHttpGetIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroupRealm_INSTEADHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsHttpPostIn">
+    <wsdl:part name="langCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsByGroupHttpPostIn">
+    <wsdl:part name="langCode" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListRealmsByGroupHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ValidateADHttpPostIn">
+    <wsdl:part name="domain" type="s:string" />
+    <wsdl:part name="userName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateADHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonAuth" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInRealmsHttpPostIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="groupTypeCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInRealmsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInGroupRecursiveHttpPostIn">
+    <wsdl:part name="groupID" type="s:string" />
+    <wsdl:part name="groupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="recursionDepth" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListGroupsInGroupRecursiveHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonInfoHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeInfoHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:BankEmployeeDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetBankEmployeeListHttpPostIn" />
+  <wsdl:message name="GetBankEmployeeListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBankEmployeeDetails" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupRealmHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsUserInGroupRealmHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupInfoHttpPostIn">
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:GUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="ValidateExternalHttpPostIn">
+    <wsdl:part name="oneTimeToken" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateExternalHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonAuth" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatesHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatorsHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListDelegatorsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonContactsHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonContactsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListApplicationsHttpPostIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeGlobal" type="s:string" />
+    <wsdl:part name="langCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListApplicationsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonRealmsHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonRealmsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsIncludingGlobalHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsIncludingGlobalHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+    <wsdl:part name="includeGlobalGroups" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListPersonGroupsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonHttpPostIn">
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="alias" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="dateOfBirth" type="s:string" />
+    <wsdl:part name="genderCD" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="cityID" type="s:string" />
+    <wsdl:part name="postalCode" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="phoneNumber" type="s:string" />
+    <wsdl:part name="formOfAddressID" type="s:string" />
+    <wsdl:part name="preferredLanguage" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="nationalityCD" type="s:string" />
+    <wsdl:part name="createdByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="dateOfBirth" type="s:string" />
+    <wsdl:part name="genderCD" type="s:string" />
+    <wsdl:part name="streetAddress" type="s:string" />
+    <wsdl:part name="cityID" type="s:string" />
+    <wsdl:part name="postalCode" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="phoneNumber" type="s:string" />
+    <wsdl:part name="formOfAddressID" type="s:string" />
+    <wsdl:part name="preferredLanguage" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="updatedByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonAliasHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="alias" type="s:string" />
+    <wsdl:part name="applicationID" type="s:string" />
+    <wsdl:part name="setAsPreferredAlias" type="s:string" />
+    <wsdl:part name="createdByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonAliasHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonGroupMembershipHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupID" type="s:string" />
+    <wsdl:part name="positionFromDate" type="s:string" />
+    <wsdl:part name="positionToDate" type="s:string" />
+    <wsdl:part name="positionEmail" type="s:string" />
+    <wsdl:part name="positionPhone" type="s:string" />
+    <wsdl:part name="positionCountryCD" type="s:string" />
+    <wsdl:part name="positionRanking1" type="s:string" />
+    <wsdl:part name="positionRanking2" type="s:string" />
+    <wsdl:part name="positionTitleID" type="s:string" />
+    <wsdl:part name="positionTitleText" type="s:string" />
+    <wsdl:part name="positionOffice" type="s:string" />
+    <wsdl:part name="positionPointOfContact" type="s:string" />
+    <wsdl:part name="createdByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonGroupMembershipHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipHttpPostIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+    <wsdl:part name="positionFromDate" type="s:string" />
+    <wsdl:part name="positionToDate" type="s:string" />
+    <wsdl:part name="positionEmail" type="s:string" />
+    <wsdl:part name="positionPhone" type="s:string" />
+    <wsdl:part name="positionCountryCD" type="s:string" />
+    <wsdl:part name="positionRanking1" type="s:string" />
+    <wsdl:part name="positionRanking2" type="s:string" />
+    <wsdl:part name="positionOffice" type="s:string" />
+    <wsdl:part name="positionVIP" type="s:string" />
+    <wsdl:part name="positionTempVIP" type="s:string" />
+    <wsdl:part name="positionPointOfContact" type="s:string" />
+    <wsdl:part name="positionInstContactType" type="s:string" />
+    <wsdl:part name="positionSkype" type="s:string" />
+    <wsdl:part name="positionTwitter" type="s:string" />
+    <wsdl:part name="positionComments" type="s:string" />
+    <wsdl:part name="titleID" type="s:string" />
+    <wsdl:part name="titleGender" type="s:string" />
+    <wsdl:part name="titleType" type="s:string" />
+    <wsdl:part name="titleShortEN" type="s:string" />
+    <wsdl:part name="titleShortES" type="s:string" />
+    <wsdl:part name="titleShortPT" type="s:string" />
+    <wsdl:part name="titleShortFR" type="s:string" />
+    <wsdl:part name="titleLongEN" type="s:string" />
+    <wsdl:part name="titleLongES" type="s:string" />
+    <wsdl:part name="titleLongPT" type="s:string" />
+    <wsdl:part name="titleLongFR" type="s:string" />
+    <wsdl:part name="updatedByPersonID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoByIDHttpPostIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoByIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupId" type="s:string" />
+    <wsdl:part name="fromDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonGroupMembershipInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipExpirationDateHttpPostIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+    <wsdl:part name="expirationDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipExpirationDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageFromFileHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="filePath" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageFromFileHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="pictureStream" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonImageHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageFullSizeHttpPostIn">
+    <wsdl:part name="fileName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageFullSizeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageHttpPostIn">
+    <wsdl:part name="fileName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonImageHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateOneTimePasscodeHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="OTPExpirationDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateOneTimePasscodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMembersHttpPostIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegates" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMembersHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListMembershipsHttpPostIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegates" type="s:string" />
+    <wsdl:part name="showGroupData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListMembershipsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="ListEmailsByGroupNoRecursiveHttpPostIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListEmailsByGroupNoRecursiveHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipRankingHttpPostIn">
+    <wsdl:part name="personGroupMembershipID" type="s:string" />
+    <wsdl:part name="ranking1" type="s:string" />
+    <wsdl:part name="ranking2" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersonGroupMembershipRankingHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="GetCityInfoHttpPostIn">
+    <wsdl:part name="cityID" type="s:string" />
+    <wsdl:part name="langCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCityInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:CityDetails" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionHttpPostIn">
+    <wsdl:part name="gumGroupId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionUpHttpPostIn">
+    <wsdl:part name="gumGroupId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="_GetGroupRecursionUpHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroupsIncludingGlobal_INSTEADHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroupsIncludingGlobal_INSTEADHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroups_INSTEADHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+    <wsdl:part name="includeGlobalGroups" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListPersonGroups_INSTEADHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGUMGroup" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListMembers_INSTEADHttpPostIn">
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="allRealms" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegates" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_ListMembers_INSTEADHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPersonDetails" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroup_INSTEADHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroup_INSTEADHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroupRealm_INSTEADHttpPostIn">
+    <wsdl:part name="personID" type="s:string" />
+    <wsdl:part name="gumGroupName" type="s:string" />
+    <wsdl:part name="realmName" type="s:string" />
+    <wsdl:part name="includeDelegators" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="USE_IsUserInGroupRealm_INSTEADHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="GUMSoap">
+    <wsdl:operation name="ListRealms">
+      <wsdl:input message="tns:ListRealmsSoapIn" />
+      <wsdl:output message="tns:ListRealmsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <wsdl:input message="tns:ListRealmsByGroupSoapIn" />
+      <wsdl:output message="tns:ListRealmsByGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <wsdl:input message="tns:ValidateADSoapIn" />
+      <wsdl:output message="tns:ValidateADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <wsdl:input message="tns:ListGroupsInRealmsSoapIn" />
+      <wsdl:output message="tns:ListGroupsInRealmsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <wsdl:input message="tns:ListGroupsInGroupRecursiveSoapIn" />
+      <wsdl:output message="tns:ListGroupsInGroupRecursiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <wsdl:input message="tns:GetPersonInfoSoapIn" />
+      <wsdl:output message="tns:GetPersonInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <wsdl:input message="tns:GetBankEmployeeInfoSoapIn" />
+      <wsdl:output message="tns:GetBankEmployeeInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <wsdl:input message="tns:GetBankEmployeeListSoapIn" />
+      <wsdl:output message="tns:GetBankEmployeeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <wsdl:input message="tns:IsUserInGroupSoapIn" />
+      <wsdl:output message="tns:IsUserInGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <wsdl:input message="tns:IsUserInGroupRealmSoapIn" />
+      <wsdl:output message="tns:IsUserInGroupRealmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <wsdl:input message="tns:GetGroupInfoSoapIn" />
+      <wsdl:output message="tns:GetGroupInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <wsdl:input message="tns:ValidateExternalSoapIn" />
+      <wsdl:output message="tns:ValidateExternalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <wsdl:input message="tns:ListDelegatesSoapIn" />
+      <wsdl:output message="tns:ListDelegatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <wsdl:input message="tns:ListDelegatorsSoapIn" />
+      <wsdl:output message="tns:ListDelegatorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <wsdl:input message="tns:ListPersonContactsSoapIn" />
+      <wsdl:output message="tns:ListPersonContactsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <wsdl:input message="tns:ListApplicationsSoapIn" />
+      <wsdl:output message="tns:ListApplicationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <wsdl:input message="tns:ListPersonRealmsSoapIn" />
+      <wsdl:output message="tns:ListPersonRealmsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <wsdl:input message="tns:ListPersonGroupsIncludingGlobalSoapIn" />
+      <wsdl:output message="tns:ListPersonGroupsIncludingGlobalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <wsdl:input message="tns:ListPersonGroupsSoapIn" />
+      <wsdl:output message="tns:ListPersonGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <wsdl:input message="tns:CreatePersonSoapIn" />
+      <wsdl:output message="tns:CreatePersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <wsdl:input message="tns:UpdatePersonSoapIn" />
+      <wsdl:output message="tns:UpdatePersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <wsdl:input message="tns:CreatePersonAliasSoapIn" />
+      <wsdl:output message="tns:CreatePersonAliasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <wsdl:input message="tns:CreatePersonGroupMembershipSoapIn" />
+      <wsdl:output message="tns:CreatePersonGroupMembershipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipSoapIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <wsdl:input message="tns:GetPersonGroupMembershipInfoByIDSoapIn" />
+      <wsdl:output message="tns:GetPersonGroupMembershipInfoByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <wsdl:input message="tns:GetPersonGroupMembershipInfoSoapIn" />
+      <wsdl:output message="tns:GetPersonGroupMembershipInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipExpirationDateSoapIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipExpirationDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <wsdl:input message="tns:AddPersonImageFromFileSoapIn" />
+      <wsdl:output message="tns:AddPersonImageFromFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <wsdl:input message="tns:AddPersonImageSoapIn" />
+      <wsdl:output message="tns:AddPersonImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <wsdl:input message="tns:GetPersonImageFullSizeSoapIn" />
+      <wsdl:output message="tns:GetPersonImageFullSizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <wsdl:input message="tns:GetPersonImageSoapIn" />
+      <wsdl:output message="tns:GetPersonImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <wsdl:input message="tns:GenerateOneTimePasscodeSoapIn" />
+      <wsdl:output message="tns:GenerateOneTimePasscodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <wsdl:input message="tns:ListMembersSoapIn" />
+      <wsdl:output message="tns:ListMembersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <wsdl:input message="tns:ListMembershipsSoapIn" />
+      <wsdl:output message="tns:ListMembershipsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <wsdl:input message="tns:ListEmailsByGroupNoRecursiveSoapIn" />
+      <wsdl:output message="tns:ListEmailsByGroupNoRecursiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipRankingSoapIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipRankingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <wsdl:input message="tns:GetCityInfoSoapIn" />
+      <wsdl:output message="tns:GetCityInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <wsdl:input message="tns:_GetGroupRecursionSoapIn" />
+      <wsdl:output message="tns:_GetGroupRecursionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <wsdl:input message="tns:_GetGroupRecursionUpSoapIn" />
+      <wsdl:output message="tns:_GetGroupRecursionUpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD" message="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADSoapIn" />
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD" message="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD" message="tns:USE_ListPersonGroups_INSTEADSoapIn" />
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD" message="tns:USE_ListPersonGroups_INSTEADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <wsdl:input name="USE_ListMembers_INSTEAD" message="tns:USE_ListMembers_INSTEADSoapIn" />
+      <wsdl:output name="USE_ListMembers_INSTEAD" message="tns:USE_ListMembers_INSTEADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD" message="tns:USE_IsUserInGroup_INSTEADSoapIn" />
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD" message="tns:USE_IsUserInGroup_INSTEADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD" message="tns:USE_IsUserInGroupRealm_INSTEADSoapIn" />
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD" message="tns:USE_IsUserInGroupRealm_INSTEADSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GUMHttpGet">
+    <wsdl:operation name="ListRealms">
+      <wsdl:input message="tns:ListRealmsHttpGetIn" />
+      <wsdl:output message="tns:ListRealmsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <wsdl:input message="tns:ListRealmsByGroupHttpGetIn" />
+      <wsdl:output message="tns:ListRealmsByGroupHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <wsdl:input message="tns:ValidateADHttpGetIn" />
+      <wsdl:output message="tns:ValidateADHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <wsdl:input message="tns:ListGroupsInRealmsHttpGetIn" />
+      <wsdl:output message="tns:ListGroupsInRealmsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <wsdl:input message="tns:ListGroupsInGroupRecursiveHttpGetIn" />
+      <wsdl:output message="tns:ListGroupsInGroupRecursiveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <wsdl:input message="tns:GetPersonInfoHttpGetIn" />
+      <wsdl:output message="tns:GetPersonInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <wsdl:input message="tns:GetBankEmployeeInfoHttpGetIn" />
+      <wsdl:output message="tns:GetBankEmployeeInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <wsdl:input message="tns:GetBankEmployeeListHttpGetIn" />
+      <wsdl:output message="tns:GetBankEmployeeListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <wsdl:input message="tns:IsUserInGroupHttpGetIn" />
+      <wsdl:output message="tns:IsUserInGroupHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <wsdl:input message="tns:IsUserInGroupRealmHttpGetIn" />
+      <wsdl:output message="tns:IsUserInGroupRealmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <wsdl:input message="tns:GetGroupInfoHttpGetIn" />
+      <wsdl:output message="tns:GetGroupInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <wsdl:input message="tns:ValidateExternalHttpGetIn" />
+      <wsdl:output message="tns:ValidateExternalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <wsdl:input message="tns:ListDelegatesHttpGetIn" />
+      <wsdl:output message="tns:ListDelegatesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <wsdl:input message="tns:ListDelegatorsHttpGetIn" />
+      <wsdl:output message="tns:ListDelegatorsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <wsdl:input message="tns:ListPersonContactsHttpGetIn" />
+      <wsdl:output message="tns:ListPersonContactsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <wsdl:input message="tns:ListApplicationsHttpGetIn" />
+      <wsdl:output message="tns:ListApplicationsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <wsdl:input message="tns:ListPersonRealmsHttpGetIn" />
+      <wsdl:output message="tns:ListPersonRealmsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <wsdl:input message="tns:ListPersonGroupsIncludingGlobalHttpGetIn" />
+      <wsdl:output message="tns:ListPersonGroupsIncludingGlobalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <wsdl:input message="tns:ListPersonGroupsHttpGetIn" />
+      <wsdl:output message="tns:ListPersonGroupsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <wsdl:input message="tns:CreatePersonHttpGetIn" />
+      <wsdl:output message="tns:CreatePersonHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <wsdl:input message="tns:UpdatePersonHttpGetIn" />
+      <wsdl:output message="tns:UpdatePersonHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <wsdl:input message="tns:CreatePersonAliasHttpGetIn" />
+      <wsdl:output message="tns:CreatePersonAliasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <wsdl:input message="tns:CreatePersonGroupMembershipHttpGetIn" />
+      <wsdl:output message="tns:CreatePersonGroupMembershipHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipHttpGetIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <wsdl:input message="tns:GetPersonGroupMembershipInfoByIDHttpGetIn" />
+      <wsdl:output message="tns:GetPersonGroupMembershipInfoByIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <wsdl:input message="tns:GetPersonGroupMembershipInfoHttpGetIn" />
+      <wsdl:output message="tns:GetPersonGroupMembershipInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipExpirationDateHttpGetIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipExpirationDateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <wsdl:input message="tns:AddPersonImageFromFileHttpGetIn" />
+      <wsdl:output message="tns:AddPersonImageFromFileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <wsdl:input message="tns:AddPersonImageHttpGetIn" />
+      <wsdl:output message="tns:AddPersonImageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <wsdl:input message="tns:GetPersonImageFullSizeHttpGetIn" />
+      <wsdl:output message="tns:GetPersonImageFullSizeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <wsdl:input message="tns:GetPersonImageHttpGetIn" />
+      <wsdl:output message="tns:GetPersonImageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <wsdl:input message="tns:GenerateOneTimePasscodeHttpGetIn" />
+      <wsdl:output message="tns:GenerateOneTimePasscodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <wsdl:input message="tns:ListMembersHttpGetIn" />
+      <wsdl:output message="tns:ListMembersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <wsdl:input message="tns:ListMembershipsHttpGetIn" />
+      <wsdl:output message="tns:ListMembershipsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <wsdl:input message="tns:ListEmailsByGroupNoRecursiveHttpGetIn" />
+      <wsdl:output message="tns:ListEmailsByGroupNoRecursiveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipRankingHttpGetIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipRankingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <wsdl:input message="tns:GetCityInfoHttpGetIn" />
+      <wsdl:output message="tns:GetCityInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <wsdl:input message="tns:_GetGroupRecursionHttpGetIn" />
+      <wsdl:output message="tns:_GetGroupRecursionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <wsdl:input message="tns:_GetGroupRecursionUpHttpGetIn" />
+      <wsdl:output message="tns:_GetGroupRecursionUpHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD" message="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADHttpGetIn" />
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD" message="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD" message="tns:USE_ListPersonGroups_INSTEADHttpGetIn" />
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD" message="tns:USE_ListPersonGroups_INSTEADHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <wsdl:input name="USE_ListMembers_INSTEAD" message="tns:USE_ListMembers_INSTEADHttpGetIn" />
+      <wsdl:output name="USE_ListMembers_INSTEAD" message="tns:USE_ListMembers_INSTEADHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD" message="tns:USE_IsUserInGroup_INSTEADHttpGetIn" />
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD" message="tns:USE_IsUserInGroup_INSTEADHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD" message="tns:USE_IsUserInGroupRealm_INSTEADHttpGetIn" />
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD" message="tns:USE_IsUserInGroupRealm_INSTEADHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GUMHttpPost">
+    <wsdl:operation name="ListRealms">
+      <wsdl:input message="tns:ListRealmsHttpPostIn" />
+      <wsdl:output message="tns:ListRealmsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <wsdl:input message="tns:ListRealmsByGroupHttpPostIn" />
+      <wsdl:output message="tns:ListRealmsByGroupHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <wsdl:input message="tns:ValidateADHttpPostIn" />
+      <wsdl:output message="tns:ValidateADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <wsdl:input message="tns:ListGroupsInRealmsHttpPostIn" />
+      <wsdl:output message="tns:ListGroupsInRealmsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <wsdl:input message="tns:ListGroupsInGroupRecursiveHttpPostIn" />
+      <wsdl:output message="tns:ListGroupsInGroupRecursiveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <wsdl:input message="tns:GetPersonInfoHttpPostIn" />
+      <wsdl:output message="tns:GetPersonInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <wsdl:input message="tns:GetBankEmployeeInfoHttpPostIn" />
+      <wsdl:output message="tns:GetBankEmployeeInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <wsdl:input message="tns:GetBankEmployeeListHttpPostIn" />
+      <wsdl:output message="tns:GetBankEmployeeListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <wsdl:input message="tns:IsUserInGroupHttpPostIn" />
+      <wsdl:output message="tns:IsUserInGroupHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <wsdl:input message="tns:IsUserInGroupRealmHttpPostIn" />
+      <wsdl:output message="tns:IsUserInGroupRealmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <wsdl:input message="tns:GetGroupInfoHttpPostIn" />
+      <wsdl:output message="tns:GetGroupInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <wsdl:input message="tns:ValidateExternalHttpPostIn" />
+      <wsdl:output message="tns:ValidateExternalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <wsdl:input message="tns:ListDelegatesHttpPostIn" />
+      <wsdl:output message="tns:ListDelegatesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <wsdl:input message="tns:ListDelegatorsHttpPostIn" />
+      <wsdl:output message="tns:ListDelegatorsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <wsdl:input message="tns:ListPersonContactsHttpPostIn" />
+      <wsdl:output message="tns:ListPersonContactsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <wsdl:input message="tns:ListApplicationsHttpPostIn" />
+      <wsdl:output message="tns:ListApplicationsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <wsdl:input message="tns:ListPersonRealmsHttpPostIn" />
+      <wsdl:output message="tns:ListPersonRealmsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <wsdl:input message="tns:ListPersonGroupsIncludingGlobalHttpPostIn" />
+      <wsdl:output message="tns:ListPersonGroupsIncludingGlobalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <wsdl:input message="tns:ListPersonGroupsHttpPostIn" />
+      <wsdl:output message="tns:ListPersonGroupsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <wsdl:input message="tns:CreatePersonHttpPostIn" />
+      <wsdl:output message="tns:CreatePersonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <wsdl:input message="tns:UpdatePersonHttpPostIn" />
+      <wsdl:output message="tns:UpdatePersonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <wsdl:input message="tns:CreatePersonAliasHttpPostIn" />
+      <wsdl:output message="tns:CreatePersonAliasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <wsdl:input message="tns:CreatePersonGroupMembershipHttpPostIn" />
+      <wsdl:output message="tns:CreatePersonGroupMembershipHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipHttpPostIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <wsdl:input message="tns:GetPersonGroupMembershipInfoByIDHttpPostIn" />
+      <wsdl:output message="tns:GetPersonGroupMembershipInfoByIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <wsdl:input message="tns:GetPersonGroupMembershipInfoHttpPostIn" />
+      <wsdl:output message="tns:GetPersonGroupMembershipInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipExpirationDateHttpPostIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipExpirationDateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <wsdl:input message="tns:AddPersonImageFromFileHttpPostIn" />
+      <wsdl:output message="tns:AddPersonImageFromFileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <wsdl:input message="tns:AddPersonImageHttpPostIn" />
+      <wsdl:output message="tns:AddPersonImageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <wsdl:input message="tns:GetPersonImageFullSizeHttpPostIn" />
+      <wsdl:output message="tns:GetPersonImageFullSizeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <wsdl:input message="tns:GetPersonImageHttpPostIn" />
+      <wsdl:output message="tns:GetPersonImageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <wsdl:input message="tns:GenerateOneTimePasscodeHttpPostIn" />
+      <wsdl:output message="tns:GenerateOneTimePasscodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <wsdl:input message="tns:ListMembersHttpPostIn" />
+      <wsdl:output message="tns:ListMembersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <wsdl:input message="tns:ListMembershipsHttpPostIn" />
+      <wsdl:output message="tns:ListMembershipsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <wsdl:input message="tns:ListEmailsByGroupNoRecursiveHttpPostIn" />
+      <wsdl:output message="tns:ListEmailsByGroupNoRecursiveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <wsdl:input message="tns:UpdatePersonGroupMembershipRankingHttpPostIn" />
+      <wsdl:output message="tns:UpdatePersonGroupMembershipRankingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <wsdl:input message="tns:GetCityInfoHttpPostIn" />
+      <wsdl:output message="tns:GetCityInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <wsdl:input message="tns:_GetGroupRecursionHttpPostIn" />
+      <wsdl:output message="tns:_GetGroupRecursionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <wsdl:input message="tns:_GetGroupRecursionUpHttpPostIn" />
+      <wsdl:output message="tns:_GetGroupRecursionUpHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD" message="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADHttpPostIn" />
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD" message="tns:USE_ListPersonGroupsIncludingGlobal_INSTEADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD" message="tns:USE_ListPersonGroups_INSTEADHttpPostIn" />
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD" message="tns:USE_ListPersonGroups_INSTEADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <wsdl:input name="USE_ListMembers_INSTEAD" message="tns:USE_ListMembers_INSTEADHttpPostIn" />
+      <wsdl:output name="USE_ListMembers_INSTEAD" message="tns:USE_ListMembers_INSTEADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD" message="tns:USE_IsUserInGroup_INSTEADHttpPostIn" />
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD" message="tns:USE_IsUserInGroup_INSTEADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD" message="tns:USE_IsUserInGroupRealm_INSTEADHttpPostIn" />
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD" message="tns:USE_IsUserInGroupRealm_INSTEADHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GUMSoap" type="tns:GUMSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListRealms">
+      <soap:operation soapAction="http://iadb.org/ListRealms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <soap:operation soapAction="http://iadb.org/ListRealmsByGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <soap:operation soapAction="http://iadb.org/ValidateAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <soap:operation soapAction="http://iadb.org/ListGroupsInRealms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <soap:operation soapAction="http://iadb.org/ListGroupsInGroupRecursive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <soap:operation soapAction="http://iadb.org/GetPersonInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <soap:operation soapAction="http://iadb.org/GetBankEmployeeInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <soap:operation soapAction="http://iadb.org/GetBankEmployeeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <soap:operation soapAction="http://iadb.org/IsUserInGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <soap:operation soapAction="http://iadb.org/IsUserInGroupRealm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <soap:operation soapAction="http://iadb.org/GetGroupInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <soap:operation soapAction="http://iadb.org/ValidateExternal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <soap:operation soapAction="http://iadb.org/ListDelegates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <soap:operation soapAction="http://iadb.org/ListDelegators" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <soap:operation soapAction="http://iadb.org/ListPersonContacts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <soap:operation soapAction="http://iadb.org/ListApplications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <soap:operation soapAction="http://iadb.org/ListPersonRealms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <soap:operation soapAction="http://iadb.org/ListPersonGroupsIncludingGlobal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <soap:operation soapAction="http://iadb.org/ListPersonGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <soap:operation soapAction="http://iadb.org/CreatePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <soap:operation soapAction="http://iadb.org/UpdatePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <soap:operation soapAction="http://iadb.org/CreatePersonAlias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <soap:operation soapAction="http://iadb.org/CreatePersonGroupMembership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <soap:operation soapAction="http://iadb.org/UpdatePersonGroupMembership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <soap:operation soapAction="http://iadb.org/GetPersonGroupMembershipInfoByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <soap:operation soapAction="http://iadb.org/GetPersonGroupMembershipInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <soap:operation soapAction="http://iadb.org/UpdatePersonGroupMembershipExpirationDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <soap:operation soapAction="http://iadb.org/AddPersonImageFromFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <soap:operation soapAction="http://iadb.org/AddPersonImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <soap:operation soapAction="http://iadb.org/GetPersonImageFullSize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <soap:operation soapAction="http://iadb.org/GetPersonImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <soap:operation soapAction="http://iadb.org/GenerateOneTimePasscode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <soap:operation soapAction="http://iadb.org/ListMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <soap:operation soapAction="http://iadb.org/ListMemberships" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <soap:operation soapAction="http://iadb.org/ListEmailsByGroupNoRecursive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <soap:operation soapAction="http://iadb.org/UpdatePersonGroupMembershipRanking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <soap:operation soapAction="http://iadb.org/GetCityInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <soap:operation soapAction="http://iadb.org/_GetGroupRecursion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <soap:operation soapAction="http://iadb.org/_GetGroupRecursionUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <soap:operation soapAction="http://iadb.org/USE_ListPersonGroupsIncludingGlobal_INSTEAD" style="document" />
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <soap:operation soapAction="http://iadb.org/USE_ListPersonGroups_INSTEAD" style="document" />
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <soap:operation soapAction="http://iadb.org/USE_ListMembers_INSTEAD" style="document" />
+      <wsdl:input name="USE_ListMembers_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListMembers_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <soap:operation soapAction="http://iadb.org/USE_IsUserInGroup_INSTEAD" style="document" />
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <soap:operation soapAction="http://iadb.org/USE_IsUserInGroupRealm_INSTEAD" style="document" />
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GUMSoap12" type="tns:GUMSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListRealms">
+      <soap12:operation soapAction="http://iadb.org/ListRealms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <soap12:operation soapAction="http://iadb.org/ListRealmsByGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <soap12:operation soapAction="http://iadb.org/ValidateAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <soap12:operation soapAction="http://iadb.org/ListGroupsInRealms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <soap12:operation soapAction="http://iadb.org/ListGroupsInGroupRecursive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <soap12:operation soapAction="http://iadb.org/GetPersonInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <soap12:operation soapAction="http://iadb.org/GetBankEmployeeInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <soap12:operation soapAction="http://iadb.org/GetBankEmployeeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <soap12:operation soapAction="http://iadb.org/IsUserInGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <soap12:operation soapAction="http://iadb.org/IsUserInGroupRealm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <soap12:operation soapAction="http://iadb.org/GetGroupInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <soap12:operation soapAction="http://iadb.org/ValidateExternal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <soap12:operation soapAction="http://iadb.org/ListDelegates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <soap12:operation soapAction="http://iadb.org/ListDelegators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <soap12:operation soapAction="http://iadb.org/ListPersonContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <soap12:operation soapAction="http://iadb.org/ListApplications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <soap12:operation soapAction="http://iadb.org/ListPersonRealms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <soap12:operation soapAction="http://iadb.org/ListPersonGroupsIncludingGlobal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <soap12:operation soapAction="http://iadb.org/ListPersonGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <soap12:operation soapAction="http://iadb.org/CreatePerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <soap12:operation soapAction="http://iadb.org/UpdatePerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <soap12:operation soapAction="http://iadb.org/CreatePersonAlias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <soap12:operation soapAction="http://iadb.org/CreatePersonGroupMembership" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <soap12:operation soapAction="http://iadb.org/UpdatePersonGroupMembership" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <soap12:operation soapAction="http://iadb.org/GetPersonGroupMembershipInfoByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <soap12:operation soapAction="http://iadb.org/GetPersonGroupMembershipInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <soap12:operation soapAction="http://iadb.org/UpdatePersonGroupMembershipExpirationDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <soap12:operation soapAction="http://iadb.org/AddPersonImageFromFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <soap12:operation soapAction="http://iadb.org/AddPersonImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <soap12:operation soapAction="http://iadb.org/GetPersonImageFullSize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <soap12:operation soapAction="http://iadb.org/GetPersonImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <soap12:operation soapAction="http://iadb.org/GenerateOneTimePasscode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <soap12:operation soapAction="http://iadb.org/ListMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <soap12:operation soapAction="http://iadb.org/ListMemberships" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <soap12:operation soapAction="http://iadb.org/ListEmailsByGroupNoRecursive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <soap12:operation soapAction="http://iadb.org/UpdatePersonGroupMembershipRanking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <soap12:operation soapAction="http://iadb.org/GetCityInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <soap12:operation soapAction="http://iadb.org/_GetGroupRecursion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <soap12:operation soapAction="http://iadb.org/_GetGroupRecursionUp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <soap12:operation soapAction="http://iadb.org/USE_ListPersonGroupsIncludingGlobal_INSTEAD" style="document" />
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <soap12:operation soapAction="http://iadb.org/USE_ListPersonGroups_INSTEAD" style="document" />
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <soap12:operation soapAction="http://iadb.org/USE_ListMembers_INSTEAD" style="document" />
+      <wsdl:input name="USE_ListMembers_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListMembers_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <soap12:operation soapAction="http://iadb.org/USE_IsUserInGroup_INSTEAD" style="document" />
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <soap12:operation soapAction="http://iadb.org/USE_IsUserInGroupRealm_INSTEAD" style="document" />
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GUMHttpGet" type="tns:GUMHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ListRealms">
+      <http:operation location="/ListRealms" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <http:operation location="/ListRealmsByGroup" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <http:operation location="/ValidateAD" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <http:operation location="/ListGroupsInRealms" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <http:operation location="/ListGroupsInGroupRecursive" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <http:operation location="/GetPersonInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <http:operation location="/GetBankEmployeeInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <http:operation location="/GetBankEmployeeList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <http:operation location="/IsUserInGroup" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <http:operation location="/IsUserInGroupRealm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <http:operation location="/GetGroupInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <http:operation location="/ValidateExternal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <http:operation location="/ListDelegates" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <http:operation location="/ListDelegators" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <http:operation location="/ListPersonContacts" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <http:operation location="/ListApplications" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <http:operation location="/ListPersonRealms" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <http:operation location="/ListPersonGroupsIncludingGlobal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <http:operation location="/ListPersonGroups" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <http:operation location="/CreatePerson" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <http:operation location="/UpdatePerson" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <http:operation location="/CreatePersonAlias" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <http:operation location="/CreatePersonGroupMembership" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <http:operation location="/UpdatePersonGroupMembership" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <http:operation location="/GetPersonGroupMembershipInfoByID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <http:operation location="/GetPersonGroupMembershipInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <http:operation location="/UpdatePersonGroupMembershipExpirationDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <http:operation location="/AddPersonImageFromFile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <http:operation location="/AddPersonImage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <http:operation location="/GetPersonImageFullSize" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <http:operation location="/GetPersonImage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <http:operation location="/GenerateOneTimePasscode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <http:operation location="/ListMembers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <http:operation location="/ListMemberships" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <http:operation location="/ListEmailsByGroupNoRecursive" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <http:operation location="/UpdatePersonGroupMembershipRanking" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <http:operation location="/GetCityInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <http:operation location="/_GetGroupRecursion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <http:operation location="/_GetGroupRecursionUp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <http:operation location="/USE_ListPersonGroupsIncludingGlobal_INSTEAD" />
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <http:operation location="/USE_ListPersonGroups_INSTEAD" />
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD">
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <http:operation location="/USE_ListMembers_INSTEAD" />
+      <wsdl:input name="USE_ListMembers_INSTEAD">
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output name="USE_ListMembers_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <http:operation location="/USE_IsUserInGroup_INSTEAD" />
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD">
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <http:operation location="/USE_IsUserInGroupRealm_INSTEAD" />
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD">
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GUMHttpPost" type="tns:GUMHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ListRealms">
+      <http:operation location="/ListRealms" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRealmsByGroup">
+      <http:operation location="/ListRealmsByGroup" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAD">
+      <http:operation location="/ValidateAD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInRealms">
+      <http:operation location="/ListGroupsInRealms" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupsInGroupRecursive">
+      <http:operation location="/ListGroupsInGroupRecursive" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfo">
+      <http:operation location="/GetPersonInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeInfo">
+      <http:operation location="/GetBankEmployeeInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankEmployeeList">
+      <http:operation location="/GetBankEmployeeList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroup">
+      <http:operation location="/IsUserInGroup" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserInGroupRealm">
+      <http:operation location="/IsUserInGroupRealm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupInfo">
+      <http:operation location="/GetGroupInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateExternal">
+      <http:operation location="/ValidateExternal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegates">
+      <http:operation location="/ListDelegates" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDelegators">
+      <http:operation location="/ListDelegators" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonContacts">
+      <http:operation location="/ListPersonContacts" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <http:operation location="/ListApplications" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonRealms">
+      <http:operation location="/ListPersonRealms" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroupsIncludingGlobal">
+      <http:operation location="/ListPersonGroupsIncludingGlobal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListPersonGroups">
+      <http:operation location="/ListPersonGroups" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <http:operation location="/CreatePerson" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerson">
+      <http:operation location="/UpdatePerson" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonAlias">
+      <http:operation location="/CreatePersonAlias" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonGroupMembership">
+      <http:operation location="/CreatePersonGroupMembership" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembership">
+      <http:operation location="/UpdatePersonGroupMembership" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfoByID">
+      <http:operation location="/GetPersonGroupMembershipInfoByID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonGroupMembershipInfo">
+      <http:operation location="/GetPersonGroupMembershipInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipExpirationDate">
+      <http:operation location="/UpdatePersonGroupMembershipExpirationDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImageFromFile">
+      <http:operation location="/AddPersonImageFromFile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonImage">
+      <http:operation location="/AddPersonImage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImageFullSize">
+      <http:operation location="/GetPersonImageFullSize" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonImage">
+      <http:operation location="/GetPersonImage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOneTimePasscode">
+      <http:operation location="/GenerateOneTimePasscode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMembers">
+      <http:operation location="/ListMembers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMemberships">
+      <http:operation location="/ListMemberships" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListEmailsByGroupNoRecursive">
+      <http:operation location="/ListEmailsByGroupNoRecursive" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonGroupMembershipRanking">
+      <http:operation location="/UpdatePersonGroupMembershipRanking" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityInfo">
+      <http:operation location="/GetCityInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursion">
+      <http:operation location="/_GetGroupRecursion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="_GetGroupRecursionUp">
+      <http:operation location="/_GetGroupRecursionUp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroupsIncludingGlobal">
+      <http:operation location="/USE_ListPersonGroupsIncludingGlobal_INSTEAD" />
+      <wsdl:input name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroupsIncludingGlobal_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListPersonGroups">
+      <http:operation location="/USE_ListPersonGroups_INSTEAD" />
+      <wsdl:input name="USE_ListPersonGroups_INSTEAD">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListPersonGroups_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADListMembers">
+      <http:operation location="/USE_ListMembers_INSTEAD" />
+      <wsdl:input name="USE_ListMembers_INSTEAD">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output name="USE_ListMembers_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroup">
+      <http:operation location="/USE_IsUserInGroup_INSTEAD" />
+      <wsdl:input name="USE_IsUserInGroup_INSTEAD">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroup_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ADIsUserInGroupRealm">
+      <http:operation location="/USE_IsUserInGroupRealm_INSTEAD" />
+      <wsdl:input name="USE_IsUserInGroupRealm_INSTEAD">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output name="USE_IsUserInGroupRealm_INSTEAD">
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GUM">
+    <wsdl:port name="GUMSoap" binding="tns:GUMSoap">
+      <soap:address location="http://hqta01:8080/sec_gum1/gum.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GUMSoap12" binding="tns:GUMSoap12">
+      <soap12:address location="http://hqta01:8080/sec_gum1/gum.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GUMHttpGet" binding="tns:GUMHttpGet">
+      <http:address location="http://hqta01:8080/sec_gum1/gum.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GUMHttpPost" binding="tns:GUMHttpPost">
+      <http:address location="http://hqta01:8080/sec_gum1/gum.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,115 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Edit Configuration</div>
+    <div class="panel-body">
+        <div class="well">
+            <fieldset>
+                <legend>{{name}}</legend>
+                <input type="hidden" ng-model="id" />
+                <div class='row'>
+                    <div class='col-sm-3'>
+                        <div required class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" type="text" ng-model="name" />
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div required class="form-group">
+                            <label>Environment</label>
+                            <select required class="form-control" ng-model="environment">
+                                <option value="Development">Development</option>
+                                <option value="Testing">Testing</option>
+                                <option value="Staging">Staging</option>
+                                <option value="Production">Production</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div required class="form-group">
+                            <label>Url</label>
+                            <input class="form-control" type="url" ng-model="url" />
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm-3'>
+                        <div class="form-group">
+                            <label>Created By</label>
+                            <input readonly="" class="form-control" type="text" ng-model="createdBy" />
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class="form-group">
+                            <label>Updated By</label>
+                            <input readonly="" class="form-control" type="text" ng-model="lastUpdatedOn" />
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class="form-group">
+                            <label>Updated On</label>
+                            <input readonly="" class="form-control" type="text" ng-model="lastUpdatedBy" />
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm-3'>
+                        <label>Parent Configuration</label>
+                        <select required class="form-control" type="text" ng-options="conf.Name for conf in parentConfigurations | filter:byApp()" ng-model="parentConfiguration">
+                            <option value="">(none)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <legend>Sections</legend>
+                    </div>
+                    <div class="row" ng-repeat="section in sections" style="margin-bottom: 2px;">
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" ng-model="section.Name" />
+                        </div>
+                        <div class="col-md-1">
+                            <button ng-click="editSection($index)" class="btn btn-success btn-sm" style="margin-bottom: 2px;">Edit Values</button>
+                        </div>
+                        <div class="col-md-1">
+                            <button ng-click="removeSection($index)" class="btn btn-danger btn-sm" style="margin-bottom: 2px;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <button ng-click="addNewSection()" class="btn btn-info btn-sm" style="margin-bottom: 2px;">Add New Section</button>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<button ng-click="save()" class="button btn btn-primary">Save</button>
+<a href="#/configuration/byApp/{{appId}}" class="button btn btn-primary">Cancel</a>
+<div ng-show="editSectionVisible" class="bootbox modal fade in ng-hide" style="display: block;" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal-dialog" style="width: 900px; z-index: 1090;">
+        <div class="modal-content" style="width: 900px;">
+            <div class="modal-header">
+                <h2>{{editSectionName}}</h2>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="well">
+                        <div class="row" ng-repeat="setting in newSettings" style="margin-bottom: 2px;">
+                            <div class="col-md-3">
+                                <input class="form-control" type="text" ng-model="setting.Key" />
+                            </div>
+                            <div class="col-md-7">
+                                <textarea rows="1" class="form-control" ng-blur="reduceEdit(this, $event)" ng-focus="enlargeEdit(this, $event)" ng-model="setting.Value"></textarea>
+                            </div>
+                            <div class="col-md-1">
+                                <button ng-click="removeSectionValue($index)" class="btn btn-danger btn-sm" style="margin-bottom: 2px;">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button ng-click="addSectionValue()" class="btn btn-info btn-sm" style="margin-bottom: 2px;">Add New</button>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="okSectionEdition($index)" type="button" class="btn btn-primary">OK</button>
+                <button ng-click="cancelSectionEdition($index)" type="button" class="btn btn-primary">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade in"></div>
+</div>

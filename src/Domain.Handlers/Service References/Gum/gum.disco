@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://hqta01:8080/sec_gum1/gum.asmx?wsdl" docRef="http://hqta01:8080/sec_gum1/gum.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://hqta01:8080/sec_gum1/gum.asmx" xmlns:q1="http://iadb.org/" binding="q1:GUMSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://hqta01:8080/sec_gum1/gum.asmx" xmlns:q2="http://iadb.org/" binding="q2:GUMSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

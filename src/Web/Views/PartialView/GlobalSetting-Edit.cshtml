@@ -1,0 +1,30 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Edit Global Setting</div>
+    <div class="panel-body">
+        <div class="well">
+            <fieldset>
+                <div class='col-sm-6'>
+                    <input type="hidden" ng-model="id" />
+                    <div class="form-group">
+                        <label>Key</label>
+                        <input required class="form-control" type="text" ng-model="key" />
+                        <label>Value</label>
+                        <input required class="form-control" type="text" ng-model="value" />
+                        <label>Section Name</label>
+                        <input required class="form-control" type="text" ng-model="sectionName" />
+                        <label>Environment</label>
+                        <select required class="form-control" ng-model="environment">
+                            <option value="Any">Any</option>
+                            <option value="Development">Development</option>
+                            <option value="Testing">Testing</option>
+                            <option value="Staging">Staging</option>
+                            <option value="Production">Production</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<button ng-click="save()" class="button btn btn-primary">Save</button>
+<a href="#/globalsetting" class="button btn btn-primary">Cancel</a>

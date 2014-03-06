@@ -1,0 +1,22 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Edit Application</div>
+    <div class="panel-body">
+        <div class="well">
+            <fieldset>
+                <div class='col-sm-6'>
+                    <input type="hidden" ng-model="id" />
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input required class="form-control" type="text" ng-model="name" />
+                        <label>AccessKey</label>
+                        <input required class="form-control" type="text" ng-model="accessKey" />
+                        <label>Owner</label>
+                        <input required class="form-control" type="text" ng-model="owner" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<button ng-click="save()" class="button btn btn-primary">Save</button>
+<a href="#/application" class="button btn btn-primary">Cancel</a>

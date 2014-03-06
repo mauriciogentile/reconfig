@@ -1,0 +1,33 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Global Settings</div>
+    <div class="panel-body">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Key</label>
+                </div>
+                <div class="col-md-4">
+                    <label>Value</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Section Name</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Environment</label>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+            <div ng-cloak class="row" ng-repeat="globalSetting in globalSettings">
+                <div class="col-md-2"><a href="#/globalsetting/edit/{{globalSetting.Id}}">{{globalSetting.Key}}</a></div>
+                <div class="col-md-4">{{globalSetting.Value}}</div>
+                <div class="col-md-2">{{globalSetting.SectionName}}</div>
+                <div class="col-md-2">{{globalSetting.Environment}}</div>
+                <div class="col-md-1">
+                    <button ng-click="delete(globalSetting.Id)" class="btn btn-danger btn-sm" style="margin-bottom: 2px;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#/globalsetting/create" class="btn btn-primary">New Global Setting</a>

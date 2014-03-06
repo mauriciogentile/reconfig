@@ -1,0 +1,35 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Available Applications</div>
+    <div class="panel-body">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-1">
+                    <label></label>
+                </div>
+                <div class="col-md-3">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Owner</label>
+                </div>
+                <div class="col-md-4">
+                    <label>AccessKey</label>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+            <div ng-cloak class="row" ng-repeat="app in applications">
+                <div class="col-md-1">
+                    <button ng-click="selectApp(app.Id)" class="btn btn-success btn-sm" style="margin-bottom: 2px;">Select</button>
+                </div>
+                <div class="col-md-3"><a href="#/application/edit/{{app.Id}}">{{app.Name}}</a></div>
+                <div class="col-md-2">{{app.Owner}}</div>
+                <div class="col-md-4">{{app.AccessKey}}</div>
+                <div class="col-md-1">
+                    <button ng-click="delete(app.Id)" class="btn btn-danger btn-sm" style="margin-bottom: 2px;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#/application/create" class="btn btn-primary">New Application...</a>

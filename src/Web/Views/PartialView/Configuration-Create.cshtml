@@ -1,0 +1,27 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">New Configuration</div>
+    <div class="panel-body">
+        <div class="well">
+            <fieldset>
+                <legend>New Configuration</legend>
+                <div class='col-sm-6'>
+                    <div required class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" type="text" ng-model="name" />
+                        <label>Environment</label>
+                        <select required class="form-control" ng-model="environment" >
+                            <option selected="selected" value="Development">Development</option>
+                            <option value="Testing">Testing</option>
+                            <option value="Staging">Staging</option>
+                            <option value="Production">Production</option>
+                        </select>
+                        <label>Url</label>
+                        <input class="form-control" type="url" ng-model="url" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<button ng-click="save()" class="button btn btn-primary">Save</button>
+<a href="#/configuration/byApp/{{appId}}" class="button btn btn-primary">Cancel</a>
