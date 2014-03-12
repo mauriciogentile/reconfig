@@ -1,4 +1,4 @@
 reconfig
 ========
 
-Remote configuration tool
+Remote configuration tool built with AngularJs, C#, ASP.NET MVC and MongoDb.
