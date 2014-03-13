@@ -1,5 +1,5 @@
-﻿angular.module('app')
-	.service('notifications', function () {
+﻿angular.module('App.Services')
+	.factory('$notifications', function () {
 	    return {
 	        alert: bootbox.alert,
 	        confirm: function (message) {

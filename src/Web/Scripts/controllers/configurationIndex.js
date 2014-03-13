@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('controllers')
-    .controller('configurationIndex', function ($scope, $routeParams, $rootScope, apiService, notifications) {
+angular.module('App.Controllers')
+    .controller('ConfigurationIndexCtrl', function ($scope, $routeParams, $rootScope, $apiService, $notifications) {
         $scope.configurations = [];
         $scope.delete = function (id) {
             if (notifications.confirm('Are you sure to delete configuration?')) {

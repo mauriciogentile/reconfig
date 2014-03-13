@@ -1,5 +1,5 @@
-﻿angular.module('app')
-	.service('apiService', function ($http) {
+﻿angular.module('App.Services')
+	.factory('ApiSvc', function ($http) {
 	    return {
 	        application: {
 	            create: function (appData) {

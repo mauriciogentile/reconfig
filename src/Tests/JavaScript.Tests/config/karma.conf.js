@@ -8,11 +8,16 @@ basePath = '../';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  '../web/lib/angular/angular.js',
-  '../web/scripts/app.js',
-  '../web/scripts/controllers/*.js',
+  '../../web/scripts/util.js',
+  '../../web/scripts/lib/angular.js',
+  '../../web/scripts/lib/angular-route.js',
+  '../../web/scripts/app.js',
+  '../../web/scripts/controllers/*.js',
+  '../../web/scripts/services/*.js',
+  'lib/angular/angular-mocks.js',
   'spec/*Spec.js'
 ];
+
 
 // list of files to exclude
 exclude = [

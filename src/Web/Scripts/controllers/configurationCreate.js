@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('controllers')
-    .controller('configurationCreate', function ($scope, $http, $routeParams, apiService, notifications, browser) {
+angular.module('App.Controllers')
+    .controller('ConfigurationCreateCtrl', function ($scope, $http, $routeParams, $apiService, $window, $location) {
         $scope.appId = $routeParams.appId;
         $scope.name = "";
         $scope.environment = "Development";
@@ -18,7 +18,7 @@ angular.module('controllers')
                     applicationId: $scope.appId
                 })
                 .success(function () {
-                    browser.setNewLocation("#/configuration/byApp/" + $scope.appId);
+                    $location.path("#/configuration/byApp/" + $scope.appId);
                 })
                 .error(function (err) {
                     notifications.alert(err.Message || err.message);

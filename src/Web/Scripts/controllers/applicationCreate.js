@@ -1,6 +1,6 @@
 ﻿"use strinct;";
-angular.module('controllers')
-    .controller('applicationCreate', function ($scope, apiService, notifications, browser) {
+angular.module('App.Controllers')
+    .controller('ApplicationCreateCtrl', function ($scope, $location, $apiService, $window) {
         $scope.name = "";
         $scope.owner = "";
         $scope.accessKey = Guid();
@@ -11,10 +11,10 @@ angular.module('controllers')
                 accessKey: $scope.accessKey
             })
             .success(function (data) {
-                browser.setNewLocation("#/application");
+                $location.path("#/application");
             })
             .error(function (err) {
-                notifications.alert(err.Message || err.message);
+                $window.alert(err.Message || err.message);
             });
         };
 });

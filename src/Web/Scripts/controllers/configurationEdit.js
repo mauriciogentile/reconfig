@@ -1,6 +1,6 @@
 ﻿"use strinct;";
-angular.module('controllers')
-    .controller('configurationEdit', function ($scope, $routeParams, $rootScope, $filter, apiService, notifications, browser) {
+angular.module('App.Controllers')
+    .controller('ConfigurationEditCtrl', function ($scope, $routeParams, $rootScope, $filter, $apiService, $notifications, $location) {
         $scope.appId = $routeParams.appId;
         $scope.name = "";
         $scope.environment = "";
@@ -56,7 +56,7 @@ angular.module('controllers')
             };
         };
         $scope.load = function () {
-            apiService.configuration.get($routeParams.id).success(function (data) {
+            $apiService.configuration.get($routeParams.id).success(function (data) {
                 $scope.id = data.Id;
                 $scope.environment = data.Environment;
                 $scope.name = data.Name;
@@ -70,7 +70,7 @@ angular.module('controllers')
                     $scope.sections.push({ Name: "appSettings" });
                     $scope.sections.push({ Name: "connectionStrings" });
                 }
-            }).then(apiService.configuration.getByApp($routeParams.appId).success(function (data) {
+            }).then($apiService.configuration.getByApp($routeParams.appId).success(function (data) {
                 $scope.parentConfigurations = data;
                 var filtered = $filter('filter')(data, { Id: $scope.parentId }, true);
                 if (filtered.length) $scope.parentConfiguration = filtered[0];
@@ -84,7 +84,7 @@ angular.module('controllers')
                 notifications.alert("Invalid Url");
                 return;
             }
-            apiService.configuration.update({
+            $apiService.configuration.update({
                     id: $scope.id,
                     name: $scope.name,
                     environment: $scope.environment,

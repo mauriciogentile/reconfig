@@ -1,10 +1,10 @@
 ﻿"use strinct;";
-angular.module('controllers')
-    .controller('menu', function ($scope, $rootScope, browser) {
+angular.module('App.Controllers')
+    .controller('menu', function ($scope, $rootScope, $location) {
         $scope.selectedApp = {};
         $scope.$on("appSelected", function (event, app) {
             $scope.selectedApp = app;
             $rootScope.selectedApp = app;
-            browser.setNewLocation("#/configuration/byApp/" + app.Id);
+            $location.path("#/configuration/byApp/" + app.Id);
         });
     });

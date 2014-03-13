@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('controllers')
-    .controller('applicationIndex', function ($scope, $routeParams, $rootScope, apiService, notifications) {
+angular.module('App.Controllers')
+    .controller('ApplicationIndexCtrl', function ($scope, $routeParams, $rootScope, $apiService, $notifications) {
         $scope.applications = [];
         $scope.delete = function (id) {
             if (notifications.confirm('Are you sure to delete app?')) {
