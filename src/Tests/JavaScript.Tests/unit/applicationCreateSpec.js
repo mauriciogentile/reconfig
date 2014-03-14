@@ -11,7 +11,7 @@ describe('applicationCreate', function() {
         location = $location;
         q = $q;
         _utils = utils;
-        _apiService = { application: { } };
+        _apiService = apiService;
         _window = {};
     }));
 
@@ -36,35 +36,43 @@ describe('applicationCreate', function() {
         expect(scope.save).not.toBeUndefined();
     });
 
-    it("should call save when save", function() {
+    it("should call save when save", function(done) {
         var applicationCreate = createController();
 
-        var deferred = q.defer();
-        var promise = deferred.promise;
+        debugger;
 
-        _apiService.application.create = sinon.stub().returns(promise);
-        var path = sinon.spy(location, "path");
+        var defer = q.defer();
+
+        //spyOn(_apiService.application, "create").andReturn(defer.promise);
+        //expect(_apiService.application.create).toHaveBeenCalled();
+
+        sinon.stub(_apiService.application, "create").returns(defer.promise);
+        sinon.spy(location, "path");
 
         scope.save({});
+        
+        defer.resolve({});
 
-        deferred.resolve();
+        scope.$apply();
 
         sinon.assert.calledOnce(_apiService.application.create);
-        sinon.assert.calledOnce(path);
+        sinon.assert.calledOnce(location.path);
     });
 
     it("should call save and show alert when error", function() {
+
         var applicationCreate = createController();
 
-        var deferred = q.defer();
-        var promise = deferred.promise;
+        var defer = q.defer();
 
-        _apiService.application.create = sinon.stub().returns(promise);
+        sinon.stub(_apiService.application, "create").returns(defer.promise);
         _window.alert = sinon.spy();
 
         scope.save({});
 
-        deferred.reject();
+        defer.reject(new Error("Error"));
+
+        scope.$apply();
 
         sinon.assert.calledOnce(_apiService.application.create);
         sinon.assert.calledOnce(_window.alert);

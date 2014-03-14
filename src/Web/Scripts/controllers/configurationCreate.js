@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('App.Controllers')
-    .controller('ConfigurationCreateCtrl', function ($scope, $http, $routeParams, $apiService, $window, $location) {
+angular.module('app.controllers')
+    .controller('configurationCreate', function ($scope, $http, $routeParams, apiService, $window, $location) {
         $scope.appId = $routeParams.appId;
         $scope.name = "";
         $scope.environment = "Development";

@@ -2,30 +2,30 @@
 // Generated on Wed Mar 12 2014 14:17:25 GMT-0400 (Eastern Daylight Time)
 
 // base path, that will be used to resolve files and exclude
-basePath = '../';
+basePath = "../";
 
 // list of files / patterns to load in the browser
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  '../../web/scripts/util.js',
-  '../../web/scripts/lib/angular.js',
-  '../../web/scripts/lib/angular-route.js',
-  '../../web/scripts/app.js',
-  '../../web/scripts/controllers/*.js',
-  '../../web/scripts/services/*.js',
-  'lib/angular/angular-mocks.js',
-  'spec/*Spec.js'
+  "../../web/scripts/lib/angular.js",
+  "../../web/scripts/lib/angular-route.js",
+  "../../web/scripts/app.js",
+  "../../web/scripts/controllers/*.js",
+  "../../web/scripts/services/*.js",
+  "lib/angular/angular-mocks.js",
+  "lib/sinon/sinon.js",
+  "lib/jasmine/jasmine.async.js",
+  "unit/*Spec.js"
 ];
-
 
 // list of files to exclude
 exclude = [
 ];
 
 // test results reporter to use
-// possible values: 'dots', 'progress', 'junit'
-reporters = ['progress'];
+// possible values: "dots", "progress", "junit"
+reporters = ["progress"];
 
 // web server port
 port = 9876;
@@ -52,7 +52,7 @@ autoWatch = true;
 // - Safari (only Mac)
 // - PhantomJS
 // - IE (only Windows)
-browsers = ['Chrome'];
+browsers = ["Chrome"];
 
 
 // If browser does not capture in given timeout [ms], kill it

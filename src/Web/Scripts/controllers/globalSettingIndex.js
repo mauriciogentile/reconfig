@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('App.Controllers')
-    .controller('GlobalSettingIndexCtrl', function ($scope, $http, $apiService, $notifications) {
+angular.module('app.controllers')
+    .controller('globalSettingIndex', function ($scope, $http, apiService, $notifications) {
         $scope.globalSettings = [];
         $scope.delete = function (id) {
             if (notifications.confirm('Are you sure to delete setting?')) {

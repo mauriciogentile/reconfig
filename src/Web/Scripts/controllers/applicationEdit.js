@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('App.Controllers')
-    .controller('ApplicationEditCtrl', function ($scope, $routeParams, $apiService, $location, $notifications) {
+angular.module('app.controllers')
+    .controller('applicationEdit', function ($scope, $routeParams, apiService, $location, $notifications) {
         apiService.application.get($routeParams.id)
         .success(function (data) {
             $scope.id = data.Id;

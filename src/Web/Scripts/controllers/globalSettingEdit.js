@@ -1,7 +1,7 @@
 ﻿"use strinct;";
 
-angular.module('App.Controllers')
-    .controller('GlobalSettingEditCtrl', function ($scope, $http, $routeParams, $apiService, $notifications, $location) {
+angular.module('app.controllers')
+    .controller('globalSettingEdit', function ($scope, $http, $routeParams, apiService, $notifications, $location) {
         $http.get('api/globalsetting/get/' + $routeParams.id).success(function (data) {
             $scope.id = data.Id;
             $scope.sectionName = data.SectionName;
@@ -10,7 +10,7 @@ angular.module('App.Controllers')
             $scope.value = data.Value;
         });
         $scope.save = function () {
-            $apiService.globalSetting.update({
+            apiService.globalSetting.update({
                     id: $scope.id,
                     sectionName: $scope.sectionName,
                     key: $scope.key,

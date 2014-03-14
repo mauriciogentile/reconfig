@@ -1,5 +1,5 @@
 ﻿"use strinct;";
-angular.module('App.Controllers')
+angular.module('app.controllers')
     .controller('menu', function ($scope, $rootScope, $location) {
         $scope.selectedApp = {};
         $scope.$on("appSelected", function (event, app) {
