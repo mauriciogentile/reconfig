@@ -43,10 +43,8 @@ describe('applicationCreate', function() {
 
         var defer = q.defer();
 
-        //spyOn(_apiService.application, "create").andReturn(defer.promise);
-        //expect(_apiService.application.create).toHaveBeenCalled();
-
         sinon.stub(_apiService.application, "create").returns(defer.promise);
+        _window.alert = sinon.spy();
         sinon.spy(location, "path");
 
         scope.save({});
@@ -57,6 +55,7 @@ describe('applicationCreate', function() {
 
         sinon.assert.calledOnce(_apiService.application.create);
         sinon.assert.calledOnce(location.path);
+        expect(_window.alert.callCount).toBe(0);
     });
 
     it("should call save and show alert when error", function() {
@@ -67,6 +66,7 @@ describe('applicationCreate', function() {
 
         sinon.stub(_apiService.application, "create").returns(defer.promise);
         _window.alert = sinon.spy();
+        sinon.spy(location, "path");
 
         scope.save({});
 
@@ -76,5 +76,6 @@ describe('applicationCreate', function() {
 
         sinon.assert.calledOnce(_apiService.application.create);
         sinon.assert.calledOnce(_window.alert);
+        expect(location.path.callCount).toBe(0);
     });
 });
