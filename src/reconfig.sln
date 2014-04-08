@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{3D4080F0-134B-4203-A763-C2EF32352AA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{54D95328-3919-48D8-BD78-7C14508E0F85}"
@@ -22,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{3ABD28E7-58AD-4F05-AC07-2FAE3746D010}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Test", "WebApp.Test\WebApp.Test.csproj", "{276EBEB5-1AD7-4962-9FB7-E5976B68637D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Tests", "Web.Tests\Web.Tests.csproj", "{A127DFC1-53F8-47EE-A0B0-3DCF97965E68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,10 @@ Global
 		{276EBEB5-1AD7-4962-9FB7-E5976B68637D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{276EBEB5-1AD7-4962-9FB7-E5976B68637D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{276EBEB5-1AD7-4962-9FB7-E5976B68637D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A127DFC1-53F8-47EE-A0B0-3DCF97965E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A127DFC1-53F8-47EE-A0B0-3DCF97965E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A127DFC1-53F8-47EE-A0B0-3DCF97965E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A127DFC1-53F8-47EE-A0B0-3DCF97965E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

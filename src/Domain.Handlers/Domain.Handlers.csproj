@@ -51,11 +51,6 @@
     <Compile Include="Queries\FindByApplicationIdHandler.cs" />
     <Compile Include="Queries\FindApplicationByNameHandler.cs" />
     <Compile Include="Queries\FindConfigurationByNameHandler.cs" />
-    <Compile Include="Service References\Gum\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -74,46 +69,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
-    <None Include="Service References\Gum\gum.wsdl" />
-    <None Include="Service References\Gum\IDB.Notifications.Domain.Handlers.Gum.BankEmployeeDetails.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Gum\IDB.Notifications.Domain.Handlers.Gum.CityDetails.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Gum\IDB.Notifications.Domain.Handlers.Gum.GUMGroup.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Gum\IDB.Notifications.Domain.Handlers.Gum.PersonAuth.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Gum\IDB.Notifications.Domain.Handlers.Gum.PersonDetails.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Gum\IDB.Notifications.Domain.Handlers.Gum.PersonGroupMembership.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Gum\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Gum\gum.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Gum\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Gum\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Gum\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
