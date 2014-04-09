@@ -51,8 +51,10 @@ namespace Reconfig.Web.Tests.Controllers.Api
                 _saveAppCommand.Object, _updateAppCommand.Object, _deleteAppCommand.Object);
 
             target.Request = _request;
+            var app = new Application();
+            target.Create(app).StatusCode.ShouldEqual(HttpStatusCode.Created);
 
-            target.Create(new Application()).StatusCode.ShouldEqual(HttpStatusCode.Created);
+            _saveAppCommand.Verify(x => x.Handle(It.IsAny<SaveAggregateRoot<Application>>()), Times.Once);
         }
 
         [Test]
@@ -64,6 +66,8 @@ namespace Reconfig.Web.Tests.Controllers.Api
             target.Request = _request;
 
             target.Create(null).StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
+
+            _saveAppCommand.Verify(x => x.Handle(It.IsAny<SaveAggregateRoot<Application>>()), Times.Never);
         }
 
         [Test]
@@ -75,6 +79,25 @@ namespace Reconfig.Web.Tests.Controllers.Api
             target.Request = _request;
             target.ModelState.AddModelError("Name", "Error in Name");
             target.Create(new Application()).StatusCode.ShouldEqual(HttpStatusCode.BadRequest);
+
+            _saveAppCommand.Verify(x => x.Handle(It.IsAny<SaveAggregateRoot<Application>>()), Times.Never);
+        }
+
+        [Test]
+        public void Should_Return_200_When_Get_Application()
+        {
+            ApplicationController target = new ApplicationController(_allAppsQuery.Object, _appByIdQuery.Object,
+                _saveAppCommand.Object, _updateAppCommand.Object, _deleteAppCommand.Object);
+            
+            var app = new Application();
+
+            _appByIdQuery.Setup(x => x.Handle(It.IsAny<FindById<Application>>())).Returns(app);
+
+            target.Request = _request;
+
+            target.Get("my_id").StatusCode.ShouldEqual(HttpStatusCode.OK);
+
+            _appByIdQuery.Verify(x => x.Handle(It.IsAny<FindById<Application>>()), Times.Once);
         }
     }
 }

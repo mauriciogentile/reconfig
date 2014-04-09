@@ -55,10 +55,6 @@
     <Reference Include="Autofac.Integration.WebApi">
       <HintPath>..\lib\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="IDB.Sec.Gum.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\IDB.Sec.Gum.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
