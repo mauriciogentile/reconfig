@@ -134,7 +134,6 @@
     <Compile Include="Controllers\Api\SectionController.cs" />
     <Compile Include="Controllers\Api\ConfigController.cs" />
     <Compile Include="Controllers\PartialViewController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">

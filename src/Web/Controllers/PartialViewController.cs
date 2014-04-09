@@ -2,7 +2,7 @@
 
 namespace Reconfig.Web.Controllers
 {
-    public class PartialViewController : BaseController
+    public class PartialViewController : Controller
     {
         public ActionResult Get(string id)
         {
